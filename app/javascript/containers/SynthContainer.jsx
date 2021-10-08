@@ -1,8 +1,11 @@
-import React, { PureComponent } from 'react'
 import * as Tone from 'tone'
+import * as melodySynth from '../tunes/melody_synth'
+import * as bassSynth from '../tunes/bass_synth'
 
-import Button from '../control_components/Button'
-import ToneSynth from '../module_components/ToneSynth'
+import React, { PureComponent } from 'react'
+
+import WelcomeScreen from '../views/WelcomeScreen'
+import SynthRoom from '../views/SynthRoom'
 
 export default class SynthContainer extends PureComponent {
   constructor(props) {
@@ -14,74 +17,49 @@ export default class SynthContainer extends PureComponent {
     }
   }
 
-  startWebAudio = () => {
-    Tone.start()
-    const instruments = this.initInstruments()
+  startWebAudio = async () => {
+    await Tone.start()
+    this.initInstruments()
 
     this.setState({
-      webAudioStarted: true,
-      instruments
+      webAudioStarted: true
     })
   }
 
-  renderToneStartButton = () => {
-    return <Button text="START" handleClick={this.startWebAudio} />
-  }
-
   initInstruments = () => {
-    const synthSettings = {
-      volume: 0,
-      oscillator: {
-        type: 'square'
-      }
-    }
-
-    const synthNode = new Tone.Synth(synthSettings).toDestination()
-
-    const instruments = [
-      {
-        type: 'ToneSynth',
-        node: synthNode,
-        settings: synthSettings
-      }
-    ]
-
-    // prettier-ignore
-    const seq = new Tone.Sequence(
-      (time, note) => {
-        synthNode.triggerAttackRelease(note, 0.1, time)
-        // subdivisions are given as subarrays
-      },
-      [
-        'C4', 'E4', 'G4', 'A4', 'C4', 'E4', 'G4', 'A4',
-        ['C4', 'C4'], ['E4', 'E4'], ['G4', 'G4'], ['A4', 'A4'], ['C4', 'C4'], ['E4', 'E4'], ['G4', 'G4'], ['A4', 'A4'],
-        ['C4', null, null, null], [null, null, 'E4', null], [null, null, 'G4', null], [null, null, null, null], ['C4', 'C4', 'C4', 'C4'], ['E4', 'E4', 'E4', 'E4'], ['G4', 'G4', 'G4', 'G4'], ['A4', 'A4', 'A4', 'A4']
-      ]
-    ).start(0)
-
-    Tone.Transport.bpm.value = 60
+    Tone.Transport.bpm.value = 120
     Tone.Transport.start()
 
-    return instruments
+    melodySynth.part.start()
+    bassSynth.sequention.start(0)
+
+    const instruments = [melodySynth.instrument, bassSynth.instrument]
+    this.setState({ instruments })
   }
 
-  handlePropertyValueChange = (property, value) => {
+  handlePropertyValueChange = (id, property, value) => {
+    console.log(property, value)
     const instruments = []
 
     this.state.instruments.forEach((instrument, i) => {
-      const { type, node, settings } = instrument
+      const newInstrument = []
 
-      const newInstrument = {
-        type: type,
-        node: node,
-        settings: Object.assign({}, settings)
-      }
+      instrument.forEach((instrumentModule, i) => {
+        const newInstrumentModule = Object.assign({}, instrumentModule)
 
-      if (property.length === 1) {
-        newInstrument.settings[property] = value
-      } else if (property.length === 2) {
-        newInstrument.settings[property[0]][property[1]] = value
-      }
+        if (instrumentModule.id === id) {
+          if (property.length === 1) {
+            const propertyName = property[0]
+            newInstrumentModule.settings[propertyName] = value
+          } else if (property.length === 2) {
+            const scopeName = property[0]
+            const propertyName = property[1]
+            newInstrumentModule.settings[scopeName][propertyName] = value
+          }
+        }
+
+        newInstrument.push(newInstrumentModule)
+      })
 
       instruments.push(newInstrument)
     })
@@ -91,13 +69,16 @@ export default class SynthContainer extends PureComponent {
     })
   }
 
+  renderWelcomeScreen = () => {
+    return <WelcomeScreen handleStartWebAudio={this.startWebAudio} />
+  }
+
   renderSynthRoom = () => {
     const { instruments } = this.state
 
     return (
-      <ToneSynth
-        node={instruments[0].node}
-        settings={instruments[0].settings}
+      <SynthRoom
+        instruments={instruments}
         handlePropertyValueChange={this.handlePropertyValueChange}
       />
     )
@@ -107,10 +88,10 @@ export default class SynthContainer extends PureComponent {
     const { webAudioStarted } = this.state
 
     return (
-      <div>
+      <div className="SynthContainer">
         {webAudioStarted === true
           ? this.renderSynthRoom()
-          : this.renderToneStartButton()}
+          : this.renderWelcomeScreen()}
       </div>
     )
   }

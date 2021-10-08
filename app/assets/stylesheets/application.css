@@ -13,5 +13,7 @@
  *= require reset
  *= require vars
  *= require basics
- *= require_tree ./control_components
+ *= require_tree ./containers
+ *= require_tree ./controls
+ *= require_tree ./views
  */
