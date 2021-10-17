@@ -3,8 +3,12 @@ import React, { PureComponent } from 'react'
 
 import ToneSynth from '../module_components/ToneSynth'
 import ChorusEffect from '../module_components/ChorusEffect'
+import DistortionEffect from '../module_components/DistortionEffect'
+import FeedbackDelayEffect from '../module_components/FeedbackDelayEffect'
 import FreeverbEffect from '../module_components/FreeverbEffect'
+import JCReverbEffect from '../module_components/JCReverbEffect'
 import PingPongDelayEffect from '../module_components/PingPongDelayEffect'
+import ReverbEffect from '../module_components/ReverbEffect'
 import TremoloEffect from '../module_components/TremoloEffect'
 import VibratoEffect from '../module_components/VibratoEffect'
 import Channel from '../module_components/Channel'
@@ -50,6 +54,30 @@ export default class SynthRoom extends PureComponent {
               />
             )
             break
+          case 'Distortion':
+            instrumentModuleElement = (
+              <DistortionEffect
+                id={id}
+                name={name}
+                node={node}
+                settings={settings}
+                handlePropertyValueChange={handlePropertyValueChange}
+                key={i}
+              />
+            )
+            break
+          case 'FeedbackDelay':
+            instrumentModuleElement = (
+              <FeedbackDelayEffect
+                id={id}
+                name={name}
+                node={node}
+                settings={settings}
+                handlePropertyValueChange={handlePropertyValueChange}
+                key={i}
+              />
+            )
+            break
           case 'Freeverb':
             instrumentModuleElement = (
               <FreeverbEffect
@@ -65,6 +93,18 @@ export default class SynthRoom extends PureComponent {
           case 'PingPongDelay':
             instrumentModuleElement = (
               <PingPongDelayEffect
+                id={id}
+                name={name}
+                node={node}
+                settings={settings}
+                handlePropertyValueChange={handlePropertyValueChange}
+                key={i}
+              />
+            )
+            break
+          case 'JCReverb':
+            instrumentModuleElement = (
+              <JCReverbEffect
                 id={id}
                 name={name}
                 node={node}

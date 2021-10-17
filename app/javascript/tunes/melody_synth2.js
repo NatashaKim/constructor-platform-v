@@ -4,7 +4,7 @@ import { generateUniqId } from '../utilities'
 const synthSettings = {
   volume: -10,
   detune: 0,
-  portamento: 0.05,
+  portamento: 0.001,
   envelope: {
     attack: 0.05,
     attackCurve: 'exponential',
@@ -15,7 +15,7 @@ const synthSettings = {
     releaseCurve: 'exponential'
   },
   oscillator: {
-    type: 'pulse',
+    type: 'amtriangle',
     modulationType: 'sine',
     // partialCount: 0,
     // partials: [],
@@ -25,13 +25,13 @@ const synthSettings = {
 }
 
 const freeverbSettings = {
-  wet: 0.78,
-  roomSize: 0.23,
-  dampening: 40
+  wet: 0.34,
+  roomSize: 0.88,
+  dampening: 400
 }
 
 const pingPongDelaySettings = {
-  wet: 0.18,
+  wet: 0.05,
   delayTime: 0.25,
   maxDelayTime: 1
 }
@@ -45,7 +45,7 @@ const tremoloSettings = {
 }
 
 const vibratoSettings = {
-  wet: 0.13,
+  wet: 0.09,
   maxDelay: 0.005,
   frequency: 5,
   depth: 0.1,
@@ -55,7 +55,7 @@ const vibratoSettings = {
 const channelSettings = {
   volume: -14,
   pan: 0,
-  mute: false,
+  mute: true,
   solo: false
 }
 
@@ -78,7 +78,7 @@ synthNode.chain(
 const instrument = [
   {
     id: generateUniqId(),
-    name: 'Melody Synth',
+    name: 'Melody Synth 2',
     type: 'ToneSynth',
     node: synthNode,
     settings: synthSettings
@@ -134,194 +134,290 @@ const part = new Tone.Part(
   [
     {
       time: '0:1:0',
-      noteName: 'D5',
-      duration: '8n',
+      noteName: 'F#6',
+      duration: '16n',
+      velocity: v
+    },
+    {
+      time: '0:1:1',
+      noteName: 'E6',
+      duration: '16n',
       velocity: v
     },
     {
       time: '0:1:2',
-      noteName: 'E5',
+      noteName: 'D6',
       duration: '8n',
       velocity: v
     },
     {
       time: '0:2:0',
-      noteName: 'F#5',
+      noteName: 'F#6',
       duration: '8n',
       velocity: v
     },
     {
       time: '0:2:2',
-      noteName: 'E5',
+      noteName: 'E6',
       duration: '8n',
       velocity: v
     },
     {
       time: '0:3:0',
-      noteName: 'D5',
-      duration: '8n',
+      noteName: 'D6',
+      duration: '8n.',
       velocity: v
     },
     {
       time: '1:0:0',
-      noteName: 'D5',
-      duration: '8n',
+      noteName: 'F#6',
+      duration: '16n',
+      velocity: v
+    },
+    {
+      time: '1:0:1',
+      noteName: 'E6',
+      duration: '16n',
       velocity: v
     },
     {
       time: '1:0:2',
-      noteName: 'E5',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '1:0:3',
-      noteName: 'F#5',
+      noteName: 'D6',
       duration: '8n',
       velocity: v
     },
     {
-      time: '1:1:1',
-      noteName: 'E5',
-      duration: '16n',
+      time: '1:1:0',
+      noteName: 'F#6',
+      duration: '8n',
       velocity: v
     },
     {
       time: '1:1:2',
-      noteName: 'D5',
+      noteName: 'E6',
       duration: '8n',
       velocity: v
     },
     {
       time: '1:2:0',
-      noteName: 'D5',
+      noteName: 'D6',
       duration: '8n',
       velocity: v
     },
     {
       time: '1:2:2',
-      noteName: 'E5',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '1:2:3',
-      noteName: 'F#5',
+      noteName: 'E6',
       duration: '8n',
       velocity: v
     },
     {
-      time: '1:3:1',
-      noteName: 'E5',
-      duration: '16n',
+      time: '1:3:0',
+      noteName: 'D6',
+      duration: '8n',
       velocity: v
     },
     {
       time: '1:3:2',
-      noteName: 'D5',
+      noteName: 'E6',
       duration: '8n',
       velocity: v
     },
     {
       time: '2:0:0',
-      noteName: 'C#5',
-      duration: '4n.',
+      noteName: 'C#6',
+      duration: '4n',
+      velocity: v
+    },
+    {
+      time: '2:1:0',
+      noteName: 'E6',
+      duration: '16n',
+      velocity: v
+    },
+    {
+      time: '2:1:1',
+      noteName: 'D6',
+      duration: '16n',
       velocity: v
     },
     {
       time: '2:1:2',
-      noteName: 'E5',
-      duration: '4n',
-      velocity: v
-    },
-    {
-      time: '2:2:2',
-      noteName: 'E5',
-      duration: '4n.',
-      velocity: v
-    },
-    {
-      time: '3:0:0',
-      noteName: 'C#5',
-      duration: '4n.',
-      velocity: v
-    },
-    {
-      time: '3:1:2',
-      noteName: 'E5',
-      duration: '4n',
-      velocity: v
-    },
-    {
-      time: '3:2:2',
-      noteName: 'E5',
-      duration: '4n.',
-      velocity: v
-    },
-    {
-      time: '4:1:0',
-      noteName: 'B4',
-      duration: '8n.',
-      velocity: v
-    },
-    {
-      time: '4:1:2',
-      noteName: 'C#5',
+      noteName: 'C#6',
       duration: '8n',
       velocity: v
     },
     {
-      time: '4:2:0',
-      noteName: 'B4',
+      time: '2:2:0',
+      noteName: 'E6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '2:2:2',
+      noteName: 'D6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '2:3:0',
+      noteName: 'C#6',
+      duration: '8n.',
+      velocity: v
+    },
+    {
+      time: '3:0:0',
+      noteName: 'E6',
+      duration: '16n',
+      velocity: v
+    },
+    {
+      time: '3:0:1',
+      noteName: 'D6',
+      duration: '16n',
+      velocity: v
+    },
+    {
+      time: '3:0:2',
+      noteName: 'C#6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '3:1:0',
+      noteName: 'E6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '3:1:2',
+      noteName: 'D6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '3:2:0',
+      noteName: 'C#6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '3:2:2',
+      noteName: 'D6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '3:3:0',
+      noteName: 'C#6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '3:3:2',
+      noteName: 'D6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '4:0:0',
+      noteName: 'B5',
       duration: '4n.',
       velocity: v
     },
     {
-      time: '4:3:2',
-      noteName: 'D5',
+      time: '4:1:2',
+      noteName: 'C#6',
       duration: '4n',
+      velocity: v
+    },
+    {
+      time: '4:2:2',
+      noteName: 'B5',
+      duration: '4n.',
+      velocity: v
+    },
+    {
+      time: '5:0:0',
+      noteName: 'C#6',
+      duration: '8n',
       velocity: v
     },
     {
       time: '5:0:2',
-      noteName: 'B4',
-      duration: '4n',
+      noteName: 'D6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '5:1:0',
+      noteName: 'B5',
+      duration: '8n',
       velocity: v
     },
     {
       time: '5:1:2',
-      noteName: 'E5',
-      duration: '4n',
+      noteName: 'C#6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '5:2:0',
+      noteName: 'E6',
+      duration: '8n',
       velocity: v
     },
     {
       time: '5:2:2',
-      noteName: 'B4',
-      duration: '4n',
+      noteName: 'D6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '5:3:0',
+      noteName: 'C#6',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '5:3:2',
+      noteName: 'B5',
+      duration: '8n',
       velocity: v
     },
     {
       time: '6:0:0',
-      noteName: 'A4',
-      duration: '4n.',
+      noteName: 'A5',
+      duration: '2n',
       velocity: v
     },
     {
-      time: '6:1:2',
-      noteName: 'G4',
-      duration: '2n',
+      time: '6:2:1',
+      noteName: 'B5',
+      duration: '16n.',
+      velocity: v
+    },
+    {
+      time: '6:3:0',
+      noteName: 'A5',
+      duration: '8n',
+      velocity: v
+    },
+    {
+      time: '6:3:3',
+      noteName: 'B5',
+      duration: '16n',
       velocity: v
     },
     {
       time: '7:0:0',
-      noteName: 'B4',
-      duration: '4n.',
+      noteName: 'D6',
+      duration: '2n',
       velocity: v
     },
     {
-      time: '7:1:2',
-      noteName: 'A4',
-      duration: '2n',
+      time: '7:2:2',
+      noteName: 'E6',
+      duration: '4n',
       velocity: v
     }
   ]

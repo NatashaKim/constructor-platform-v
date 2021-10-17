@@ -1,6 +1,10 @@
 import * as Tone from 'tone'
+import * as mainSynth from '../tunes/main_synth'
 import * as melodySynth from '../tunes/melody_synth'
+import * as melodySynth2 from '../tunes/melody_synth2'
 import * as bassSynth from '../tunes/bass_synth'
+import * as membraneSynth from '../tunes/membrane_synth'
+import * as drums from '../tunes/drums'
 
 import React, { PureComponent } from 'react'
 
@@ -27,13 +31,22 @@ export default class SynthContainer extends PureComponent {
   }
 
   initInstruments = () => {
-    Tone.Transport.bpm.value = 120
+    Tone.Transport.bpm.value = 105
     Tone.Transport.start()
 
+    mainSynth.part.start()
     melodySynth.part.start()
-    bassSynth.sequention.start(0)
+    melodySynth2.part.start()
+    bassSynth.part.start()
+    membraneSynth.part.start()
 
-    const instruments = [melodySynth.instrument, bassSynth.instrument]
+    const instruments = [
+      mainSynth.instrument,
+      melodySynth.instrument,
+      melodySynth2.instrument,
+      bassSynth.instrument,
+      membraneSynth.instrument
+    ]
     this.setState({ instruments })
   }
 
