@@ -2,6 +2,9 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
 import ToneSynth from '../module_components/ToneSynth'
+import Sampler from '../module_components/Sampler'
+import Sequencer from '../module_components/Sequencer'
+
 import ChorusEffect from '../module_components/ChorusEffect'
 import DistortionEffect from '../module_components/DistortionEffect'
 import FeedbackDelayEffect from '../module_components/FeedbackDelayEffect'
@@ -11,6 +14,7 @@ import PingPongDelayEffect from '../module_components/PingPongDelayEffect'
 import ReverbEffect from '../module_components/ReverbEffect'
 import TremoloEffect from '../module_components/TremoloEffect'
 import VibratoEffect from '../module_components/VibratoEffect'
+
 import Channel from '../module_components/Channel'
 
 export default class SynthRoom extends PureComponent {
@@ -27,132 +31,35 @@ export default class SynthRoom extends PureComponent {
 
       instrument.forEach((instrumentModule, i) => {
         const { id, name, type, node, settings } = instrumentModule
-        let instrumentModuleElement
 
-        switch (type) {
-          case 'ToneSynth':
-            instrumentModuleElement = (
-              <ToneSynth
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'Chorus':
-            instrumentModuleElement = (
-              <ChorusEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'Distortion':
-            instrumentModuleElement = (
-              <DistortionEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'FeedbackDelay':
-            instrumentModuleElement = (
-              <FeedbackDelayEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'Freeverb':
-            instrumentModuleElement = (
-              <FreeverbEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'PingPongDelay':
-            instrumentModuleElement = (
-              <PingPongDelayEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'JCReverb':
-            instrumentModuleElement = (
-              <JCReverbEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'Tremolo':
-            instrumentModuleElement = (
-              <TremoloEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'Vibrato':
-            instrumentModuleElement = (
-              <VibratoEffect
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
-          case 'Channel':
-            instrumentModuleElement = (
-              <Channel
-                id={id}
-                name={name}
-                node={node}
-                settings={settings}
-                handlePropertyValueChange={handlePropertyValueChange}
-                key={i}
-              />
-            )
-            break
+        const components = {
+          ToneSynth: ToneSynth,
+          Sampler: Sampler,
+          Sequencer: Sequencer,
+          ChorusEffect: ChorusEffect,
+          DistortionEffect: DistortionEffect,
+          FeedbackDelayEffect: FeedbackDelayEffect,
+          FreeverbEffect: FreeverbEffect,
+          JCReverbEffect: JCReverbEffect,
+          PingPongDelayEffect: PingPongDelayEffect,
+          ReverbEffect: ReverbEffect,
+          TremoloEffect: TremoloEffect,
+          VibratoEffect: VibratoEffect,
+          Channel: Channel
         }
 
-        instrumentModuleElements.push(instrumentModuleElement)
+        const ComponentType = components[type]
+
+        instrumentModuleElements.push(
+          <ComponentType
+            id={id}
+            name={name}
+            node={node}
+            settings={settings}
+            handlePropertyValueChange={handlePropertyValueChange}
+            key={i}
+          />
+        )
       })
 
       instrumentElements.push(

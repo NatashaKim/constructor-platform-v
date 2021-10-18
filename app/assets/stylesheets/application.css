@@ -15,5 +15,6 @@
  *= require basics
  *= require_tree ./containers
  *= require_tree ./controls
+ *= require_tree ./synths
  *= require_tree ./views
  */

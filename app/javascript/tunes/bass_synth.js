@@ -95,42 +95,42 @@ const instrument = [
   // {
   //   id: generateUniqId(),
   //   name: 'Distortion',
-  //   type: 'Distortion',
+  //   type: 'DistortionEffect',
   //   node: distortionNode,
   //   settings: distortionSettings
   // },
   {
     id: generateUniqId(),
     name: 'Feedback Delay',
-    type: 'FeedbackDelay',
+    type: 'FeedbackDelayEffect',
     node: feedbackDelayNode,
     settings: feedbackDelaySettings
   },
   // {
   //   id: generateUniqId(),
   //   name: 'Freeverb',
-  //   type: 'Freeverb',
+  //   type: 'FreeverbEffect',
   //   node: freeverbNode,
   //   settings: freeverbSettings
   // },
   {
     id: generateUniqId(),
     name: 'JC Reverb',
-    type: 'JCReverb',
+    type: 'JCReverbEffect',
     node: jcReverbNode,
     settings: jcReverbSettings
   },
   // {
   //   id: generateUniqId(),
   //   name: 'Ping Pong Delay',
-  //   type: 'PingPongDelay',
+  //   type: 'PingPongDelayEffect',
   //   node: pingPongDelayNode,
   //   settings: pingPongDelaySettings
   // },
   // {
   //   id: generateUniqId(),
   //   name: 'Reverb',
-  //   type: 'Reverb',
+  //   type: 'ReverbEffect',
   //   node: reverbNode,
   //   settings: reverbSettings
   // },

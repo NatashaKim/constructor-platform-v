@@ -120,7 +120,7 @@ const instrument = [
   {
     id: generateUniqId(),
     name: 'Distortion',
-    type: 'Distortion',
+    type: 'DistortionEffect',
     node: distortionNode,
     settings: distortionSettings
   },

@@ -5,6 +5,7 @@ import * as melodySynth2 from '../tunes/melody_synth2'
 import * as bassSynth from '../tunes/bass_synth'
 import * as membraneSynth from '../tunes/membrane_synth'
 import * as drums from '../tunes/drums'
+import * as drumSampler from '../tunes/drum_sampler'
 
 import React, { PureComponent } from 'react'
 
@@ -45,7 +46,8 @@ export default class SynthContainer extends PureComponent {
       melodySynth.instrument,
       melodySynth2.instrument,
       bassSynth.instrument,
-      membraneSynth.instrument
+      membraneSynth.instrument,
+      drumSampler.instrument
     ]
     this.setState({ instruments })
   }
@@ -68,6 +70,27 @@ export default class SynthContainer extends PureComponent {
             const scopeName = property[0]
             const propertyName = property[1]
             newInstrumentModule.settings[scopeName][propertyName] = value
+          } else if (property.length === 3) {
+            let searchedEvent
+
+            newInstrumentModule.settings.sequence.forEach((event, i) => {
+              if (
+                event.noteName === property[0] &&
+                event.time === property[1]
+              ) {
+                searchedEvent = event
+                newInstrumentModule.settings.sequence.splice(i, 1)
+              }
+            })
+
+            if (searchedEvent === undefined) {
+              newInstrumentModule.settings.sequence.push({
+                time: property[1],
+                noteName: property[0],
+                duration: '16n',
+                velocity: 1
+              })
+            }
           }
         }
 
