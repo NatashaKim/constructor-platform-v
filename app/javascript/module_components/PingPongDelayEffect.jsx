@@ -46,27 +46,27 @@ export default class PingPongDelayEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-
-        <Slider
-          name="Delay Time"
-          property={['delayTime']}
-          min={0}
-          max={1}
-          step={0.01}
-          value={delayTime}
-          handleChange={this.handlePropertyValueChange}
-        />
-
-        <Slider
-          name="Max Delay Time"
-          property={['maxDelayTime']}
-          min={0}
-          max={1}
-          step={0.01}
-          value={maxDelayTime}
-          handleChange={this.handlePropertyValueChange}
-        />
       </div>
+
+      // <Slider
+      //   name="Delay Time"
+      //   property={['delayTime']}
+      //   min={0}
+      //   max={1}
+      //   step={0.01}
+      //   value={delayTime}
+      //   handleChange={this.handlePropertyValueChange}
+      // />
+      //
+      // <Slider
+      //   name="Max Delay Time"
+      //   property={['maxDelayTime']}
+      //   min={0}
+      //   max={1}
+      //   step={0.01}
+      //   value={maxDelayTime}
+      //   handleChange={this.handlePropertyValueChange}
+      // />
     )
   }
 }

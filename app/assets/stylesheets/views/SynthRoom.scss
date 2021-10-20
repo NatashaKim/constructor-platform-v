@@ -1,55 +1,322 @@
 .SynthRoom {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
+  width: 1440px;
+  flex-wrap: wrap;
   .Row {
-    display: flex;
-    height: 50vh;
-    overflow: hidden;
-
-    &:not(:first-child) {
-      border-top: 3px solid white;
-    }
-
     & > div {
-      display: flex;
-      flex-direction: column;
-      width: 220px;
-      min-width: 220px;
-      height: 100%;
-      border-left: 3px solid white;
-      border-right: none;
-      overflow: scroll;
-
-      &:last-child {
-        width: 223px;
-        border-right: 3px solid white;
-      }
-
-      h1 {
-        padding: 0 20px;
-        line-height: 60px;
-        font-weight: bold;
-        text-align: center;
-        text-transform: uppercase;
-        border-bottom: 1px solid var(--white);
-      }
-
       h2 {
-        padding: 0 20px;
-        line-height: 60px;
+        font-size: 25px;
+        line-height: 25px;
+        font-family: 'Nostra';
+        background-color: var(--objects-color);
+        padding: 5px 4px;
         text-align: center;
-        text-transform: uppercase;
-        border-bottom: 1px solid var(--white);
+        display: flex;
+        justify-content: center;
       }
-
-      .Slider,
-      .Knob,
-      .ButtonSet {
-        // margin: 40px 0;
-        padding: 20px;
-        border-bottom: 1px solid var(--white);
+      .Slider.Volume,
+      .Slider.Portamento,
+      .Slider.Phase,
+      .Slider.Harmonicity,
+      .Slider.Harmonicity {
+        input {
+          height: 42px;
+        }
+      }
+    }
+    .FreeverbEffect,
+    .PingPongDelayEffect,
+    .TremoloEffect,
+    .VibratoEffect,
+    .FeedbackDelayEffect,
+    .JCReverbEffect {
+      width: 132px;
+    }
+    .Channel {
+      .ToggleButton {
+        width: 87px;
+        height: 95px;
+        background-image: url('/assets/channel_off.svg');
+        color: transparent;
+      }
+    }
+  }
+  .Row:nth-of-type(1) {
+    padding: 0 19px 0 25px;
+    width: 724px;
+    display: grid;
+    grid-template-columns: 170px 170px 170px 170px;
+    grid-template-rows: 873px 140px;
+    background-image: url('/assets/verse_synth_back.png');
+    .ToneSynth {
+      grid-template-columns: 85px 85px 85px 85px 85px 85px 85px 85px;
+      grid-template-rows: 95px 95px 44px 37px 71px 57px 99px 37px 37px 264px;
+      margin-top: 37px;
+      width: 680px;
+      grid-area: 1 / 1 / 2 / 5;
+      .SynthName {
+        grid-area: 1 / 1 / 3 / 6;
+        div:nth-of-type(1) {
+          align-self: self-end;
+          width: 255px;
+        }
+        div:nth-of-type(2) {
+          margin-left: 0;
+          width: 255px;
+        }
+      }
+      .Slider.Volume {
+        grid-area: 6 / 1 / 7 / 5;
+      }
+      .Knob {
+        grid-area: 3 / 1 / 6 / 3;
+      }
+      .Slider.Portamento {
+        grid-area: 7 / 1 / 8 / 5;
+      }
+      h2:nth-of-type(1) {
+        grid-area: 4 / 5 / 5 / 9;
+        align-self: self-end;
+      }
+      .OscillatorButtonSet {
+        grid-area: 7 / 5 / 9 / 9;
+        margin-top: 2px;
+        .ButtonSet {
+          & > div {
+            width: 320px;
+            justify-content: flex-end;
+            align-self: flex-end;
+            .ToggleButton {
+              margin: 0 0 8px 8px;
+            }
+          }
+        }
+      }
+      .Slider.Phase {
+        grid-area: 5 / 5 / 6 / 9;
+        margin-top: 15px;
+      }
+      .Slider.Harmonicity {
+        grid-area: 6 / 5 / 7 / 9;
+      }
+      h2:nth-of-type(2) {
+        grid-area: 8 / 1 / 9 / 5;
+      }
+      .AttackSection {
+        grid-area: 9 / 1 / 11 / 3;
+        border-left: 2px solid var(--objects-color);
+        border-right: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 66px 0 11px;
+        justify-content: space-between;
+        .ButtonSet {
+          align-items: flex-end;
+          & > div {
+            align-items: flex-end;
+            flex-direction: column;
+            .ToggleButton {
+              margin-top: 8px;
+              width: fit-content;
+            }
+          }
+        }
+      }
+      .DecaySection {
+        grid-area: 9 / 3 / 11 / 5;
+        border-right: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 66px 0 11px;
+        justify-content: space-between;
+        .ButtonSet {
+          align-items: flex-end;
+          & > div {
+            align-items: flex-end;
+            flex-direction: column;
+            .ToggleButton {
+              margin-top: 8px;
+              width: fit-content;
+            }
+          }
+        }
+      }
+      .SustainSection {
+        grid-area: 10 / 5 / 11 / 7;
+        border-right: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 29px 0 11px;
+      }
+      .ReleaseSection {
+        grid-area: 10 / 7 / 11 / 9;
+        border-right: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 29px 0 11px;
+        .Slider {
+          margin-bottom: 26px;
+        }
+        .ButtonSet {
+          align-items: flex-end;
+          & > div {
+            align-items: flex-end;
+            flex-direction: column;
+            .ToggleButton {
+              margin-top: 8px;
+              width: fit-content;
+            }
+          }
+        }
+      }
+    }
+    .Channel {
+      position: absolute;
+      top: 132px;
+      left: 450px;
+    }
+  }
+  .Row:nth-of-type(2) {
+    padding: 0 25px 0 11px;
+    width: 716px;
+    display: grid;
+    grid-template-columns: 170px 170px 170px 170px;
+    grid-template-rows: 757px 296px;
+    // background-image: url('/assets/verse_synth_back.png');
+    .ToneSynth {
+      grid-template-columns: 85px 85px 85px 85px 85px 85px 85px 85px;
+      grid-template-rows: 35px 95px 95px 84px 53px 94px 35px 267px;
+      width: 680px;
+      grid-area: 1 / 1 / 2 / 5;
+      .SynthName {
+        grid-area: 2 / 1 / 4 / 5;
+        div:nth-of-type(1) {
+          width: 288px;
+          margin-left: -116px;
+        }
+        div:nth-of-type(2) {
+          margin-left: 0;
+          width: 255px;
+        }
+      }
+      .Slider.Volume {
+        margin-top: 32px;
+        grid-area: 4 / 1 / 5 / 5;
+      }
+      .Knob {
+        grid-area: 6 / 1 / 8 / 3;
+        .wrapper {
+          margin-bottom: 0;
+        }
+      }
+      .Slider.Portamento {
+        grid-area: 5 / 1 / 6 / 5;
+        align-self: center;
+      }
+      h2:nth-of-type(1) {
+        grid-area: 1 / 3 / 2 / 7;
+      }
+      .OscillatorButtonSet {
+        grid-area: 1 / 4 / 5 / 9;
+        .ButtonSet {
+          display: flex;
+          flex-direction: column;
+          & > div {
+            margin-left: 78px;
+            flex-direction: column;
+            height: 288px;
+            width: fit-content;
+            align-self: flex-start;
+            .ToggleButton {
+              margin: 0 0 8px 80px;
+              width: fit-content;
+              align-self: flex-end;
+              &:nth-of-type(1) {
+                margin-top: 65px;
+              }
+              &:nth-of-type(5) {
+                margin-bottom: 40px;
+              }
+            }
+          }
+        }
+      }
+      .Slider.Phase {
+        grid-area: 5 / 5 / 6 / 9;
+        align-self: center;
+      }
+      .Slider.Harmonicity {
+        margin-top: 7px;
+        grid-area: 6 / 5 / 7 / 9;
+      }
+      h2:nth-of-type(2) {
+        grid-area: 7 / 3 / 8 / 7;
+      }
+      .AttackSection {
+        grid-area: 8 / 1 / 9 / 3;
+        display: flex;
+        flex-direction: column;
+        padding: 29px 0 11px;
+        justify-content: space-between;
+        .ButtonSet {
+          align-items: flex-end;
+          & > div {
+            align-items: flex-end;
+            flex-direction: column;
+            .ToggleButton {
+              margin-top: 8px;
+              width: fit-content;
+            }
+          }
+        }
+      }
+      .DecaySection {
+        grid-area: 8 / 3 / 9 / 5;
+        border-left: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 29px 0 11px;
+        justify-content: space-between;
+        .ButtonSet {
+          align-items: flex-end;
+          & > div {
+            align-items: flex-end;
+            flex-direction: column;
+            .ToggleButton {
+              margin-top: 8px;
+              width: fit-content;
+            }
+          }
+        }
+      }
+      .SustainSection {
+        grid-area: 8 / 5 / 9 / 7;
+        border-left: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 29px 0 11px;
+      }
+      .ReleaseSection {
+        grid-area: 8 / 7 / 9 / 9;
+        border-left: 2px solid var(--objects-color);
+        border-right: 2px solid var(--objects-color);
+        display: flex;
+        flex-direction: column;
+        padding: 29px 0 11px;
+        .Slider {
+          margin-bottom: 26px;
+        }
+        .ButtonSet {
+          align-items: flex-end;
+          & > div {
+            align-items: flex-end;
+            flex-direction: column;
+            .ToggleButton {
+              margin-top: 8px;
+              width: fit-content;
+            }
+          }
+        }
       }
     }
   }

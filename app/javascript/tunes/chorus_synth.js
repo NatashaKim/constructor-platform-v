@@ -78,7 +78,7 @@ synthNode.chain(
 const instrument = [
   {
     id: generateUniqId(),
-    name: 'Melody Synth 2',
+    name: 'Chorus Synth',
     type: 'ToneSynth',
     node: synthNode,
     settings: synthSettings

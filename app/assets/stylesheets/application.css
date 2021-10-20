@@ -13,8 +13,10 @@
  *= require reset
  *= require vars
  *= require basics
+ *= require fonts
  *= require_tree ./containers
  *= require_tree ./controls
  *= require_tree ./synths
+ *= require_tree ./effects
  *= require_tree ./views
  */

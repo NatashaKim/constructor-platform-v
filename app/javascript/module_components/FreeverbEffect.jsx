@@ -46,27 +46,27 @@ export default class FreeverbEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-
-        <Slider
-          name="Room Size"
-          property={['roomSize']}
-          min={0}
-          max={1}
-          step={0.01}
-          value={roomSize}
-          handleChange={this.handlePropertyValueChange}
-        />
-
-        <Slider
-          name="Dampening"
-          property={['dampening']}
-          min={0}
-          max={1000}
-          step={1}
-          value={dampening}
-          handleChange={this.handlePropertyValueChange}
-        />
       </div>
+
+      // <Slider
+      //   name="Room Size"
+      //   property={['roomSize']}
+      //   min={0}
+      //   max={1}
+      //   step={0.01}
+      //   value={roomSize}
+      //   handleChange={this.handlePropertyValueChange}
+      // />
+      //
+      // <Slider
+      //   name="Dampening"
+      //   property={['dampening']}
+      //   min={0}
+      //   max={1000}
+      //   step={1}
+      //   value={dampening}
+      //   handleChange={this.handlePropertyValueChange}
+      // />
     )
   }
 }
