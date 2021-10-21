@@ -28,13 +28,21 @@ export default class Sampler extends Component {
     const { name, settings } = this.props
     const { volume, attack, release, curve } = settings
 
+    function wrapWords(name, tmpl) {
+      return name.replace(/\w+/g, tmpl || '<div>$&</div>')
+    }
+    let separetedName = wrapWords(name)
+
     const envelopeCurves = ['linear', 'exponential']
 
     this.updateNodeParams()
 
     return (
       <div className="Sampler">
-        <h1>{name}</h1>
+        <div
+          className="SamplerName"
+          dangerouslySetInnerHTML={{ __html: separetedName }}
+        ></div>
 
         <Slider
           name="Volume"

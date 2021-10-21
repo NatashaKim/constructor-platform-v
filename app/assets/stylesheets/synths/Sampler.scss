@@ -1,0 +1,17 @@
+.Sampler {
+  .SamplerName {
+    display: flex;
+    flex-direction: column;
+    div {
+      text-transform: uppercase;
+      height: 95px;
+      font-size: 72px;
+      background-color: var(--objects-color);
+      line-height: 81px;
+      padding: 4px 16px;
+      display: flex;
+      justify-content: center;
+      width: fit-content;
+    }
+  }
+}
