@@ -55,7 +55,7 @@ const vibratoSettings = {
 const channelSettings = {
   volume: -14,
   pan: 0,
-  mute: false,
+  mute: true,
   solo: false
 }
 
