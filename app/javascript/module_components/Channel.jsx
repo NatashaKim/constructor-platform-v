@@ -10,11 +10,6 @@ export default class Channel extends Component {
     super(props)
   }
 
-  // Можно спользовать обновление тут, так как
-  // componentDidUpdate() {
-  // this.updateNodeParams()
-  // }
-
   updateNodeParams = () => {
     const { node, settings } = this.props
     const { volume, pan, mute, solo } = settings
@@ -37,39 +32,40 @@ export default class Channel extends Component {
     this.updateNodeParams()
 
     return (
-      <div className="Channel">
+      <div className="ChorusEffect">
+        <h1>{name}</h1>
+
+        <Slider
+          name="Volume"
+          property={['volume']}
+          min={-80}
+          max={6}
+          step={0.01}
+          value={volume}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Knob
+          name="Pan"
+          property={['pan']}
+          min={-1}
+          max={1}
+          value={pan}
+          handleChange={this.handlePropertyValueChange}
+        />
+
         <ToggleButton
           text="Mute"
           isOn={mute}
           handleClick={() => this.handlePropertyValueChange(['mute'], !mute)}
         />
-      </div>
-      // <h1>{name}</h1>
-      //
-      // <Slider
-      //   name="Volume"
-      //   property={['volume']}
-      //   min={-80}
-      //   max={6}
-      //   step={0.01}
-      //   value={volume}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Knob
-      //   name="Pan"
-      //   property={['pan']}
-      //   min={-1}
-      //   max={1}
-      //   value={pan}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
 
-      // <ToggleButton
-      //   text="Solo"
-      //   isOn={solo}
-      //   handleClick={() => this.handlePropertyValueChange(['solo'], !solo)}
-      // />
+        <ToggleButton
+          text="Solo"
+          isOn={solo}
+          handleClick={() => this.handlePropertyValueChange(['solo'], !solo)}
+        />
+      </div>
     )
   }
 }

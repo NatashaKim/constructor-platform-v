@@ -8,18 +8,13 @@ export default class PingPongDelayEffect extends Component {
     super(props)
   }
 
-  // Можно спользовать обновление тут, так как
-  // componentDidUpdate() {
-  // this.updateNodeParams()
-  // }
-
   updateNodeParams = () => {
     const { node, settings } = this.props
     const { wet, delayTime, maxDelayTime } = settings
 
     node.wet.value = wet
-    node.delayTime.value = wet
-    node.maxDelayTime = wet
+    node.delayTime.value = delayTime
+    node.maxDelayTime = maxDelayTime
   }
 
   handlePropertyValueChange = (property, value) => {
@@ -46,27 +41,27 @@ export default class PingPongDelayEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-      </div>
 
-      // <Slider
-      //   name="Delay Time"
-      //   property={['delayTime']}
-      //   min={0}
-      //   max={1}
-      //   step={0.01}
-      //   value={delayTime}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Max Delay Time"
-      //   property={['maxDelayTime']}
-      //   min={0}
-      //   max={1}
-      //   step={0.01}
-      //   value={maxDelayTime}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
+        <Slider
+          name="Delay Time"
+          property={['delayTime']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={delayTime}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Max Delay Time"
+          property={['maxDelayTime']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={maxDelayTime}
+          handleChange={this.handlePropertyValueChange}
+        />
+      </div>
     )
   }
 }

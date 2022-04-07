@@ -10,11 +10,6 @@ export default class ToneSynth extends Component {
     super(props)
   }
 
-  // Можно спользовать обновление тут, так как
-  // componentDidUpdate() {
-  // this.updateNodeParams()
-  // }
-
   updateNodeParams = () => {
     const { node, settings } = this.props
     const { volume, detune, portamento, envelope, oscillator } = settings
@@ -59,11 +54,6 @@ export default class ToneSynth extends Component {
     const { name, settings } = this.props
     const { volume, detune, portamento, envelope, oscillator } = settings
 
-    function wrapWords(name, tmpl) {
-      return name.replace(/\w+/g, tmpl || '<div>$&</div>')
-    }
-    let separetedName = wrapWords(name)
-
     const {
       type,
       // modulationType,
@@ -107,7 +97,15 @@ export default class ToneSynth extends Component {
       'pwm'
     ]
 
-    const envelopeCurves = ['linear', 'exponential']
+    const envelopeCurves = [
+      'linear',
+      'exponential',
+      'sine',
+      'cosine',
+      'bounce',
+      'ripple',
+      'step'
+    ]
 
     const decayEnvelopeCurves = ['linear', 'exponential']
 
@@ -115,10 +113,8 @@ export default class ToneSynth extends Component {
 
     return (
       <div className="ToneSynth">
-        <div
-          className="SynthName"
-          dangerouslySetInnerHTML={{ __html: separetedName }}
-        ></div>
+        <h1>{name}</h1>
+
         <Slider
           name="Volume"
           property={['volume']}
@@ -128,6 +124,7 @@ export default class ToneSynth extends Component {
           value={volume}
           handleChange={this.handlePropertyValueChange}
         />
+
         <Knob
           name="Detune"
           property={['detune']}
@@ -136,6 +133,7 @@ export default class ToneSynth extends Component {
           value={detune}
           handleChange={this.handlePropertyValueChange}
         />
+
         <Slider
           name="Portamento"
           property={['portamento']}
@@ -145,16 +143,17 @@ export default class ToneSynth extends Component {
           value={portamento}
           handleChange={this.handlePropertyValueChange}
         />
+
         <h2>Oscillator</h2>
-        <div className="OscillatorButtonSet">
-          <ButtonSet
-            name="Type"
-            property={['oscillator', 'type']}
-            value={type}
-            options={oscillatorTypes}
-            handleChange={this.handlePropertyValueChange}
-          />
-        </div>
+
+        <ButtonSet
+          name="Type"
+          property={['oscillator', 'type']}
+          value={type}
+          options={oscillatorTypes}
+          handleChange={this.handlePropertyValueChange}
+        />
+
         <Slider
           name="Phase"
           property={['oscillator', 'phase']}
@@ -164,6 +163,7 @@ export default class ToneSynth extends Component {
           value={phase}
           handleChange={this.handlePropertyValueChange}
         />
+
         <Slider
           name="Harmonicity"
           property={['oscillator', 'harmonicity']}
@@ -173,72 +173,72 @@ export default class ToneSynth extends Component {
           value={harmonicity}
           handleChange={this.handlePropertyValueChange}
         />
+
         <h2>Envelope</h2>
-        <div className="AttackSection">
-          <Slider
-            name="Attack"
-            property={['envelope', 'attack']}
-            min={0}
-            max={1}
-            step={0.01}
-            value={attack}
-            handleChange={this.handlePropertyValueChange}
-          />
-          <ButtonSet
-            name="Attack Curve"
-            property={['envelope', 'attackCurve']}
-            value={attackCurve}
-            options={envelopeCurves}
-            handleChange={this.handlePropertyValueChange}
-          />
-        </div>
-        <div className="DecaySection">
-          <Slider
-            name="Decay"
-            property={['envelope', 'decay']}
-            min={0}
-            max={1}
-            step={0.01}
-            value={decay}
-            handleChange={this.handlePropertyValueChange}
-          />
-          <ButtonSet
-            name="Decay Curve"
-            property={['envelope', 'decayCurve']}
-            value={decayCurve}
-            options={decayEnvelopeCurves}
-            handleChange={this.handlePropertyValueChange}
-          />
-        </div>
-        <div className="SustainSection">
-          <Slider
-            name="Sustain"
-            property={['envelope', 'sustain']}
-            min={0}
-            max={1}
-            step={0.01}
-            value={sustain}
-            handleChange={this.handlePropertyValueChange}
-          />
-        </div>
-        <div className="ReleaseSection">
-          <Slider
-            name="Release"
-            property={['envelope', 'release']}
-            min={0}
-            max={1}
-            step={0.01}
-            value={release}
-            handleChange={this.handlePropertyValueChange}
-          />
-          <ButtonSet
-            name="Release Curve"
-            property={['envelope', 'releaseCurve']}
-            value={releaseCurve}
-            options={envelopeCurves}
-            handleChange={this.handlePropertyValueChange}
-          />
-        </div>
+
+        <Slider
+          name="Attack"
+          property={['envelope', 'attack']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={attack}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <ButtonSet
+          name="Attack Curve"
+          property={['envelope', 'attackCurve']}
+          value={attackCurve}
+          options={envelopeCurves}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Decay"
+          property={['envelope', 'decay']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={decay}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <ButtonSet
+          name="Decay Curve"
+          property={['envelope', 'decayCurve']}
+          value={decayCurve}
+          options={decayEnvelopeCurves}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Sustain"
+          property={['envelope', 'sustain']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={sustain}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Release"
+          property={['envelope', 'release']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={release}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <ButtonSet
+          name="Release Curve"
+          property={['envelope', 'releaseCurve']}
+          value={releaseCurve}
+          options={envelopeCurves}
+          handleChange={this.handlePropertyValueChange}
+        />
       </div>
     )
   }

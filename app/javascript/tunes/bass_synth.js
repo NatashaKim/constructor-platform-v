@@ -2,20 +2,20 @@ import * as Tone from 'tone'
 import { generateUniqId } from '../utilities'
 
 const synthSettings = {
-  volume: -5,
+  volume: 0.8,
   detune: 0,
-  portamento: 0,
+  portamento: 0.05,
   envelope: {
-    attack: 0.03,
+    attack: 0.05,
     attackCurve: 'exponential',
-    decay: 0.9,
+    decay: 0.2,
     decayCurve: 'exponential',
-    sustain: 0.0,
-    release: 0.4,
+    sustain: 0.2,
+    release: 1.5,
     releaseCurve: 'exponential'
   },
   oscillator: {
-    type: 'fmsine',
+    type: 'fatsawtooth',
     modulationType: 'sine',
     // partialCount: 0,
     // partials: [],
@@ -24,65 +24,23 @@ const synthSettings = {
   }
 }
 
-// const distortionSettings = {
-//   wet: 0,
-//   distortion: 0,
-//   oversample: '4x'
-// }
-
-const feedbackDelaySettings = {
-  wet: 0,
-  delayTime: 0.8,
-  maxDelay: 0.8
+const freeverbSettings = {
+  wet: 0.9,
+  roomSize: 0.08,
+  dampening: 40
 }
-
-// const freeverbSettings = {
-//   wet: 0.55,
-//   roomSize: 0.23,
-//   dampening: 40
-// }
-
-const jcReverbSettings = {
-  wet: 0,
-  roomSize: 0.5
-}
-
-// const pingPongDelaySettings = {
-//   wet: 0,
-//   delayTime: 0.25,
-//   maxDelayTime: 1
-// }
-//
-// const reverbSettings = {
-//   wet: 0,
-//   decay: 1.5,
-//   preDelay: 0.01
-// }
 
 const channelSettings = {
-  volume: -14,
+  volume: -6,
   pan: 0,
   mute: false,
   solo: false
 }
 
 const synthNode = new Tone.Synth(synthSettings)
-// const distortionNode = new Tone.Distortion(distortionSettings)
-const feedbackDelayNode = new Tone.FeedbackDelay(feedbackDelaySettings)
-// const freeverbNode = new Tone.Freeverb(freeverbSettings)
-const jcReverbNode = new Tone.JCReverb(jcReverbSettings)
-// const pingPongDelayNode = new Tone.PingPongDelay(pingPongDelaySettings)
-// const reverbNode = new Tone.Reverb(reverbSettings)
+const freeverbNode = new Tone.Freeverb(freeverbSettings)
 const channelNode = new Tone.Channel(channelSettings).toDestination()
-synthNode.chain(
-  // distortionNode,
-  feedbackDelayNode,
-  // freeverbNode,
-  jcReverbNode,
-  // pingPongDelayNode,
-  // reverbNode,
-  channelNode
-)
+synthNode.chain(freeverbNode, channelNode)
 
 const instrument = [
   {
@@ -92,48 +50,13 @@ const instrument = [
     node: synthNode,
     settings: synthSettings
   },
-  // {
-  //   id: generateUniqId(),
-  //   name: 'Distortion',
-  //   type: 'DistortionEffect',
-  //   node: distortionNode,
-  //   settings: distortionSettings
-  // },
   {
     id: generateUniqId(),
-    name: 'Feedback Delay',
-    type: 'FeedbackDelayEffect',
-    node: feedbackDelayNode,
-    settings: feedbackDelaySettings
+    name: 'Freeverb',
+    type: 'FreeverbEffect',
+    node: freeverbNode,
+    settings: freeverbSettings
   },
-  // {
-  //   id: generateUniqId(),
-  //   name: 'Freeverb',
-  //   type: 'FreeverbEffect',
-  //   node: freeverbNode,
-  //   settings: freeverbSettings
-  // },
-  {
-    id: generateUniqId(),
-    name: 'JC Reverb',
-    type: 'JCReverbEffect',
-    node: jcReverbNode,
-    settings: jcReverbSettings
-  },
-  // {
-  //   id: generateUniqId(),
-  //   name: 'Ping Pong Delay',
-  //   type: 'PingPongDelayEffect',
-  //   node: pingPongDelayNode,
-  //   settings: pingPongDelaySettings
-  // },
-  // {
-  //   id: generateUniqId(),
-  //   name: 'Reverb',
-  //   type: 'ReverbEffect',
-  //   node: reverbNode,
-  //   settings: reverbSettings
-  // },
   {
     id: generateUniqId(),
     name: 'Channel',
@@ -143,160 +66,12 @@ const instrument = [
   }
 ]
 
-const v = 1
-
-const part = new Tone.Part(
-  function (time, note) {
-    synthNode.triggerAttackRelease(
-      note.noteName,
-      note.duration,
-      time,
-      note.velocity
-    )
+const sequention = new Tone.Sequence(
+  (time, note) => {
+    synthNode.triggerAttackRelease(note, '1m', time)
   },
-  [
-    {
-      time: '0:0:0',
-      noteName: 'D2',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '0:3:2',
-      noteName: 'A2',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '1:0:0',
-      noteName: 'D2',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '1:2:0',
-      noteName: 'D2',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '2:0:0',
-      noteName: 'F#2',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '2:3:2',
-      noteName: 'C#3',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '3:0:0',
-      noteName: 'F#2',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '3:2:0',
-      noteName: 'F#2',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '4:0:0',
-      noteName: 'B1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '4:3:2',
-      noteName: 'F#2',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '5:0:0',
-      noteName: 'B1',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '5:2:0',
-      noteName: 'B1',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '6:0:0',
-      noteName: 'G1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '6:0:2',
-      noteName: 'G1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '6:1:2',
-      noteName: 'G1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '6:2:0',
-      noteName: 'G1',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '6:3:0',
-      noteName: 'G1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '7:0:0',
-      noteName: 'A1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '7:0:2',
-      noteName: 'A1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '7:1:2',
-      noteName: 'A1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '7:2:0',
-      noteName: 'A1',
-      duration: '8n',
-      velocity: v
-    },
-    {
-      time: '7:3:0',
-      noteName: 'A1',
-      duration: '16n',
-      velocity: v
-    },
-    {
-      time: '7:3:2',
-      noteName: 'A1',
-      duration: '16n',
-      velocity: v
-    }
-  ]
+  ['C3', 'D3', 'E2', 'E3'],
+  '1m'
 )
 
-part.loopEnd = '8m'
-part.loop = true
-
-export { instrument, part }
+export { instrument, sequention }

@@ -1,11 +1,8 @@
 import * as Tone from 'tone'
-import * as mainSynth from '../tunes/main_synth'
-import * as verseSynth from '../tunes/verse_synth'
-import * as chorusSynth from '../tunes/chorus_synth'
-import * as bassSynth from '../tunes/bass_synth'
-import * as membraneSynth from '../tunes/membrane_synth'
-import * as drums from '../tunes/drums'
-import * as drumSampler from '../tunes/drum_sampler'
+// import * as melodySynth from '../tunes/melody_synth'
+// import * as bassSynth from '../tunes/bass_synth'
+// import * as spaceSynth from '../tunes/space_synth'
+import * as allEffectsSynth from '../tunes/all_effects_synth'
 
 import React, { PureComponent } from 'react'
 
@@ -32,21 +29,21 @@ export default class SynthContainer extends PureComponent {
   }
 
   initInstruments = () => {
-    Tone.Transport.bpm.value = 105
+    Tone.Transport.bpm.value = 120
     Tone.Transport.start()
 
-    verseSynth.part.start()
-    chorusSynth.part.start()
-    mainSynth.part.start()
-    bassSynth.part.start()
+    // melodySynth.part.start()
+    // bassSynth.sequention.start(0)
+    // spaceSynth.sequention.start(0)
+    allEffectsSynth.part.start()
 
     const instruments = [
-      verseSynth.instrument,
-      chorusSynth.instrument,
-      mainSynth.instrument,
-      bassSynth.instrument,
-      drumSampler.instrument
+      // melodySynth.instrument,
+      // bassSynth.instrument,
+      // spaceSynth.instrument
+      allEffectsSynth.instrument
     ]
+
     this.setState({ instruments })
   }
 
@@ -68,27 +65,6 @@ export default class SynthContainer extends PureComponent {
             const scopeName = property[0]
             const propertyName = property[1]
             newInstrumentModule.settings[scopeName][propertyName] = value
-          } else if (property.length === 3) {
-            let searchedEvent
-
-            newInstrumentModule.settings.sequence.forEach((event, i) => {
-              if (
-                event.noteName === property[0] &&
-                event.time === property[1]
-              ) {
-                searchedEvent = event
-                newInstrumentModule.settings.sequence.splice(i, 1)
-              }
-            })
-
-            if (searchedEvent === undefined) {
-              newInstrumentModule.settings.sequence.push({
-                time: property[1],
-                noteName: property[0],
-                duration: '16n',
-                velocity: 1
-              })
-            }
           }
         }
 

@@ -12,7 +12,7 @@ default: &default
 development:
   adapter: postgresql
   encoding: unicode
-  database: coroone_development2
+  database: coroone_development3
   pool: 5
   username: admin
   password: 2468

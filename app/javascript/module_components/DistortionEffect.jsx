@@ -43,25 +43,25 @@ export default class DistortionEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
+
+        <Slider
+          name="Distortion"
+          property={['distortion']}
+          min={0}
+          max={20}
+          step={0.01}
+          value={distortion}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <ButtonSet
+          name="Oversample"
+          property={['oversample']}
+          value={oversample}
+          options={oversampleTypes}
+          handleChange={this.handlePropertyValueChange}
+        />
       </div>
-      //
-      // <Slider
-      //   name="Distortion"
-      //   property={['distortion']}
-      //   min={0}
-      //   max={20}
-      //   step={0.01}
-      //   value={distortion}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <ButtonSet
-      //   name="Oversample"
-      //   property={['oversample']}
-      //   value={oversample}
-      //   options={oversampleTypes}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
     )
   }
 }

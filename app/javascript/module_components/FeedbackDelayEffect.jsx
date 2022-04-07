@@ -41,27 +41,27 @@ export default class FeedbackDelayEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-      </div>
 
-      // <Slider
-      //   name="Delay Time"
-      //   property={['delayTime']}
-      //   min={0}
-      //   max={0.8}
-      //   step={0.01}
-      //   value={delayTime}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Max Delay"
-      //   property={['maxDelay']}
-      //   min={0}
-      //   max={0.8}
-      //   step={0.01}
-      //   value={maxDelay}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
+        <Slider
+          name="Delay Time"
+          property={['delayTime']}
+          min={0}
+          max={0.8}
+          step={0.01}
+          value={delayTime}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Max Delay"
+          property={['maxDelay']}
+          min={0}
+          max={0.8}
+          step={0.01}
+          value={maxDelay}
+          handleChange={this.handlePropertyValueChange}
+        />
+      </div>
     )
   }
 }

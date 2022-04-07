@@ -9,16 +9,7 @@ export default class TremoloEffect extends Component {
     super(props)
   }
 
-  // Можно спользовать обновление тут, так как
-  // componentDidUpdate() {
-  // this.updateNodeParams()
-  // }
-
   updateNodeParams = () => {
-    // frequency: 10,
-    // type: 'sine',
-    // depth: 0.5,
-    // spread: 180
     const { node, settings } = this.props
     const { wet, frequency, type, depth, spread } = settings
 
@@ -54,45 +45,45 @@ export default class TremoloEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-      </div>
 
-      // <Slider
-      //   name="Frequency"
-      //   property={['frequency']}
-      //   min={0}
-      //   max={100}
-      //   step={1}
-      //   value={frequency}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <ButtonSet
-      //   name="Type"
-      //   property={['type']}
-      //   value={type}
-      //   options={oscillatorTypes}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Depth"
-      //   property={['depth']}
-      //   min={0}
-      //   max={1}
-      //   step={0.01}
-      //   value={depth}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Spread"
-      //   property={['spread']}
-      //   min={0}
-      //   max={180}
-      //   step={1}
-      //   value={spread}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
+        <Slider
+          name="Frequency"
+          property={['frequency']}
+          min={0}
+          max={100}
+          step={1}
+          value={frequency}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <ButtonSet
+          name="Type"
+          property={['type']}
+          value={type}
+          options={oscillatorTypes}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Depth"
+          property={['depth']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={depth}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Spread"
+          property={['spread']}
+          min={0}
+          max={180}
+          step={1}
+          value={spread}
+          handleChange={this.handlePropertyValueChange}
+        />
+      </div>
     )
   }
 }

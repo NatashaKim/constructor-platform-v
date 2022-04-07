@@ -16,7 +16,9 @@ export default class Slider extends PureComponent {
     const { name, min, max, step, value } = this.props
 
     return (
-      <div className={`Slider ${name}`}>
+      <div className="Slider">
+        <h3>{name}</h3>
+
         <input
           ref={this.input}
           type="range"

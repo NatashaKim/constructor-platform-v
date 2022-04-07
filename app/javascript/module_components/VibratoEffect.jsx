@@ -9,11 +9,6 @@ export default class VibratoEffect extends Component {
     super(props)
   }
 
-  // Можно спользовать обновление тут, так как
-  // componentDidUpdate() {
-  // this.updateNodeParams()
-  // }
-
   updateNodeParams = () => {
     const { node, settings } = this.props
     const { wet, maxDelay, frequency, depth, type } = settings
@@ -50,45 +45,45 @@ export default class VibratoEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-      </div>
 
-      // <Slider
-      //   name="Max Delay"
-      //   property={['maxDelay']}
-      //   min={0}
-      //   max={1}
-      //   step={0.01}
-      //   value={maxDelay}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Frequency"
-      //   property={['frequency']}
-      //   min={0}
-      //   max={3000}
-      //   step={1}
-      //   value={frequency}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Depth"
-      //   property={['depth']}
-      //   min={0}
-      //   max={1}
-      //   step={0.01}
-      //   value={depth}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <ButtonSet
-      //   name="Type"
-      //   property={['type']}
-      //   value={type}
-      //   options={oscillatorTypes}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
+        <Slider
+          name="Max Delay"
+          property={['maxDelay']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={maxDelay}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Frequency"
+          property={['frequency']}
+          min={0}
+          max={3000}
+          step={1}
+          value={frequency}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Depth"
+          property={['depth']}
+          min={0}
+          max={1}
+          step={0.01}
+          value={depth}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <ButtonSet
+          name="Type"
+          property={['type']}
+          value={type}
+          options={oscillatorTypes}
+          handleChange={this.handlePropertyValueChange}
+        />
+      </div>
     )
   }
 }

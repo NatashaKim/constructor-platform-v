@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_09_18_142042) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "oscillators", force: :cascade do |t|
     t.string "frequency", default: "440"
     t.string "integer"

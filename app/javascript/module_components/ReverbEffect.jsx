@@ -41,27 +41,27 @@ export default class ReverbEffect extends Component {
           value={wet}
           handleChange={this.handlePropertyValueChange}
         />
-      </div>
 
-      // <Slider
-      //   name="Decay"
-      //   property={['decay']}
-      //   min={0}
-      //   max={10}
-      //   step={0.01}
-      //   value={decay}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
-      //
-      // <Slider
-      //   name="Pre Delay"
-      //   property={['preDelay']}
-      //   min={0}
-      //   max={1}
-      //   step={0.001}
-      //   value={preDelay}
-      //   handleChange={this.handlePropertyValueChange}
-      // />
+        <Slider
+          name="Decay"
+          property={['decay']}
+          min={0}
+          max={10}
+          step={0.01}
+          value={decay}
+          handleChange={this.handlePropertyValueChange}
+        />
+
+        <Slider
+          name="Pre Delay"
+          property={['preDelay']}
+          min={0}
+          max={1}
+          step={0.001}
+          value={preDelay}
+          handleChange={this.handlePropertyValueChange}
+        />
+      </div>
     )
   }
 }
