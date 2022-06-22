@@ -245,11 +245,11 @@ footer {
             max-width: 300px;
           }
         }
-        .form {
+        form {
           display: flex;
           justify-content: space-between;
-          gap: 16px;
-          input {
+          // gap: 16px;
+          .field_input input {
             @include input;
             width: 89.6vw;
             max-width: 301px;
@@ -263,7 +263,7 @@ footer {
             font-weight: 500;
             color: #ffffff;
           }
-          button {
+          .action_button input {
             background-color: #ff6f42;
             color: #ffffff;
             display: flex;
@@ -277,6 +277,8 @@ footer {
             border-radius: 53px;
             border: none;
             height: 36px;
+            background-image: url(button-image.svg);
+            background-position: center;
           }
         }
       }
@@ -514,7 +516,7 @@ footer {
           max-width: 390px;
         }
       }
-      .form {
+      form {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -522,14 +524,14 @@ footer {
         height: fit-content;
         max-width: 1400px;
         margin: 0 auto;
-        input {
+        .field_input input {
           width: 81.2vw;
           height: 36px;
           max-width: 301px;
           @include input;
           padding: 5px 12px 5px 12px;
         }
-        button {
+        .action_button input {
           background-color: #ff6f42;
           color: #ffffff;
           display: flex;
@@ -543,6 +545,8 @@ footer {
           border-radius: 18px;
           border: none;
           height: 36px;
+          background-image: url(button-image.svg);
+          background-position: center;
         }
       }
     }
@@ -686,18 +690,18 @@ footer {
             max-width: 400px;
           }
         }
-        .form {
+        form {
           display: flex;
           justify-content: space-between;
-          gap: 16px;
-          input {
+          // gap: 16px;
+          .field_input input {
             width: 71.6vw;
             max-width: 1086px;
             height: 106px;
             @include input;
             padding: 45px 80px 45px 40px;
           }
-          button {
+          .action_button input {
             background-color: #ff6f42;
             color: #ffffff;
             display: flex;
@@ -711,6 +715,7 @@ footer {
             border-radius: 53px;
             border: none;
             height: 106px;
+            background-image: none;
           }
         }
       }
@@ -945,7 +950,7 @@ footer {
           max-width: 651px;
         }
       }
-      .form {
+      form {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -953,14 +958,14 @@ footer {
         height: fit-content;
         max-width: 1400px;
         margin: 0 auto;
-        input {
+        .field_input input {
           width: 66.2vw;
           max-width: 1004px;
           height: 106px;
           @include input;
           padding: 45px 80px 45px 40px;
         }
-        button {
+        .action_button input {
           background-color: #ff6f42;
           color: #ffffff;
           display: flex;
@@ -974,6 +979,7 @@ footer {
           border-radius: 53px;
           border: none;
           height: 106px;
+          background-image: none;
         }
       }
     }
@@ -1037,3 +1043,14 @@ footer {
 //   font-size: 2.5em;
 //   line-height: 1.1em;
 // }
+
+.thanks {
+  background-color: $black;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10vw;
+  justify-content: center;
+  img {
+    width: 60vw;
+  }
+}
